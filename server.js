@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/2blog');
 
 var blogRoutes = require('./routes/blog');
+var commentRoutes = require('./routes/comment');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -19,7 +20,8 @@ app.get('/', function(req, res){
   res.send('index')
 });
 
-app.use('/api', blogRoutes)
+app.use('/api', blogRoutes);
+app.use('/api/blogs', commentRoutes);
 
 
 app.listen(port, function(){

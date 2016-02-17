@@ -1,5 +1,5 @@
 var express = require('express');
-var router = express();
+var router = express.Router();
 
 var Blog = require('../models/blog')
 
@@ -14,7 +14,8 @@ router.route('/blogs')
     })
   })
   .post(function(req, res){
-    var blog = new Blog;
+
+    var blog = new Blog();
     blog.title = req.body.title;
     blog.content = req.body.content;
     blog.author = req.body.author || 'douglas';
