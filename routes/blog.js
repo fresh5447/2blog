@@ -5,7 +5,9 @@ var Blog = require('../models/blog')
 
 router.route('/blogs')
   .get(function(req, res){
-    Blog.find(function(err, blogs){
+    Blog.find()
+    .populate('comments')
+    .exec(function(err, blogs){
       if(err){
         console.log(err)
       } else {

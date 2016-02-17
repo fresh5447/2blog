@@ -17,7 +17,8 @@ router.route('/:blog_id/comment')
           if(err){
             console.log('something is wrong!')
           } else {
-            blog.comments.push(req.params.blog_id);
+            blog.comments.push(comment._id);
+
             blog.save();
 
             res.json({message: 'pushed comment!'})
