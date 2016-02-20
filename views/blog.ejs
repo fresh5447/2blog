@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Page Title</title>
   <!-- Latest compiled and minified Bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 <link rel="stylesheet" href="main.css">
@@ -11,30 +12,8 @@
   </head>
 <body class="container">
 <%- include ./partials/navbar.ejs %>
-<div class="jumbotron">
-  <div class="container">
-    <form action="/signup" method="POST" role="form">
-      <legend>User Registration</legend>
-    
-      <div class="form-group">
-        <label for="">username</label>
-        <input name="username" type="text" class="form-control" id="" >
-      </div>
-
-      <div class="form-group">
-        <label for="">email</label>
-        <input name="email" type="email" class="form-control" id="" >
-      </div>
-
-      <div class="form-group">
-        <label for="">password</label>
-        <input name="password" type="password" class="form-control" id="" >
-      </div>
-    
-      <button type="submit" class="btn btn-primary">create</button>
-    </form>
-  </div>
-</div>
+<h1>This is a Heading</h1>
+<p>This is a paragraph.</p>
 
 </body>
 <script src="https://code.jquery.com/jquery-2.2.0.js"></script>

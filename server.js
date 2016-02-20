@@ -44,8 +44,12 @@ app.set('view engine', 'ejs');
 var port = process.env.PORT || 8080;
 
 app.get('/', function(req, res){
-  res.send('index')
+  res.render('index')
 });
+
+app.get('/blog', function(req, res){
+  res.render('blog');
+})
 
 app.use('/api', blogRoutes);
 app.use('/api/blogs', commentRoutes);
