@@ -49,7 +49,11 @@ app.get('/', function(req, res){
 
 app.get('/blog', function(req, res){
   res.render('blog');
-})
+});
+
+app.get('/post', function(req, res){
+  res.render('post');
+});
 
 app.use('/api', blogRoutes);
 app.use('/api/blogs', commentRoutes);
