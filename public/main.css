@@ -1,0 +1,18 @@
+section {
+  background: #eee;
+  padding-right: 60px;
+  padding-left: 60px;
+  border-radius: 6px;
+  margin-top: 48px;
+  margin-bottom: 48px;
+  padding-top: 48px;
+  padding-bottom: 48px;
+}
+
+.cstm-img {
+  max-width: 60%;
+}
+
+.cstm-form-input {
+  width: 50%;
+}

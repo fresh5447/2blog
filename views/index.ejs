@@ -4,9 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Page Title</title>
+  <title>ma blog</title>
   <!-- Latest compiled and minified Bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+<link rel="stylesheet" href="main.css">
 
 
   </head>
@@ -15,10 +16,12 @@
 <div class="jumbotron">
   <div class="row">
     <div class="col-md-6">
-      <p>This might be a picture of myself..</p>
+      <img src="/images/some_dude.png" class="img-responsive" alt="Image">
     </div>
     <div class="col-md-6">
-      <p>This may be contact information..</p>
+      <h3>Billy Bob</h3>
+      <p>Pen Salesman</p>
+      <p>1-800-pens4-life</p>
     </div>
   </div>
 </div>
@@ -26,7 +29,17 @@
 <section>
   <div class="container">
     <div class="row">
-      <p>This may be my skills and about me section</p>
+      <div class="col-md-6">
+        <h3>Skills</h3>
+        <ul>
+          <li><h4>Able to count to 1000</h4></li>
+          <li><h4>SUPER fast at talking</h4></li>
+          <li><h4>Not very funny</h4></li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <img src="/images/skill_set.jpg" class="img-responsive cstm-img" alt="Image">
+      </div>
     </div>
   </div>
 </section>
@@ -34,7 +47,33 @@
 <section>
   <div class="container">
     <div class="row">
-      <p>This will be my portfolio</p>
+      <h3>Super Duper Portfolio</h3>
+      <div class="row">
+        <div class="col-md-3"><div class="panel panel-default">
+          <div class="panel-body">
+            <img src="/images/cool_stuff.gif" class="img-responsive" alt="Image">
+          </div>
+          <div class="panel-footer">
+            <p>Super Project Name</p>
+          </div>
+        </div></div>
+        <div class="col-md-3"><div class="panel panel-default">
+          <div class="panel-body">
+            <img src="/images/cool_stuff.gif" class="img-responsive" alt="Image">
+          </div>
+          <div class="panel-footer">
+            <p>Super Project Name</p>
+          </div>
+        </div></div>
+        <div class="col-md-3"><div class="panel panel-default">
+          <div class="panel-body">
+            <img src="/images/cool_stuff.gif" class="img-responsive" alt="Image">
+          </div>
+          <div class="panel-footer">
+            <p>Super Project Name</p>
+          </div>
+        </div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -42,7 +81,27 @@
 <section>
   <div class="container">
     <div class="row">
-      <p>This will be a contact me section..</p>
+      <form action="" method="POST" role="form">
+        <legend>Drop me a line</legend>
+      
+        <div class="form-group">
+          <label for="">your name</label>
+          <input type="text" class="form-control cstm-form-input" id="" >
+        </div>
+      
+        <div class="form-group">
+          <label for="">your email</label>
+          <input type="text" class="form-control cstm-form-input" id="" >
+        </div>
+
+        <div class="form-group">
+          <label for="">message</label>
+          <input type="text" class="form-control cstm-form-input" id="" >
+        </div>
+        
+      
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
     </div>
   </div>
 </section>
@@ -51,5 +110,5 @@
 <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-
+<script src="app.js"></script>
 </html>
