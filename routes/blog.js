@@ -20,6 +20,7 @@ router.route('/blogs')
     var blog = new Blog();
     blog.title = req.body.title;
     blog.content = req.body.content;
+    blog.image = req.body.image;
     blog.author = req.body.author || 'douglas';
 
     blog.save(function(err, blog){

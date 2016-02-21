@@ -5,7 +5,9 @@ var BlogSchema = new Schema({
   title: String,
   content: String,
   author: String,
-  comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}],
+  image: String,
+  date: { type: Date, default: Date.now },
+  comments: [{type: mongoose.Schema.Types.ObjectId, ref: 'Comment'}]
 });
 
 module.exports = mongoose.model('Blog', BlogSchema);
