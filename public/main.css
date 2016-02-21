@@ -16,3 +16,17 @@ section {
 .cstm-form-input {
   width: 50%;
 }
+
+.social-icons {
+  list-style-type: none;
+}
+
+.social-icons li {
+  font-size: 60px;
+  display: inline;
+  margin: 20px;
+}
+
+.social-icons li:hover{
+  color: purple;
+}
