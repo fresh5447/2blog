@@ -7,17 +7,26 @@
   <title>Page Title</title>
   <!-- Latest compiled and minified Bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-<link rel="stylesheet" href="main.css">
+
 
   </head>
 <body class="container">
 <%- include ./partials/navbar.ejs %>
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
+<div class="jumbotron">
+  <div class="container">
+    <h3>blog</h3>
+    <p>checkout this list of blogs..</p>
+    <% for(var i=0; i < blogs.length; i++) { %>
+       <ul>
+          <li><a href="/blog/<%= blogs[i]._id %>"><%= blogs[i].title %></a></li>
+       </ul>
+    <% } %>
+  </div>
+</div>
 
 </body>
 <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-<script src="app.js"></script>
+
 </html>

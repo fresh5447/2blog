@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+  <title>Page Title</title>
   <!-- Latest compiled and minified Bootstrap CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
@@ -13,21 +13,18 @@
 <body class="container">
 <%- include ./partials/navbar.ejs %>
 <div class="jumbotron">
-  <form action="/api/blogs" class="" method="POST" role="form">
-    <legend>New Blog Post</legend>
-  
-    <div class="form-group">
-      <label for="">title</label>
-      <input type="text" name="title" class="form-control" id="">
-    </div>
-  
-    <div class="form-group">
-      <label for="">content</label>
-      <input type="text" name="content" class="form-control" id="">
-    </div>  
-  
-    <button type="submit" class="btn btn-primary">Submit</button>
-  </form>
+  <div class="container">
+    <h3><%= blog.title %></h3>
+    <p><%= blog.content %></p>
+    
+    <%if (blog.comments.length > 0) { %>
+      <% for(var i=0; i < blog.comments.length; i++) { %>
+         <ul>
+           <li><%= blog.comments[i].body %></li>
+         </ul>
+      <% } %>
+    <% } %>
+  </div>
 </div>
 
 </body>

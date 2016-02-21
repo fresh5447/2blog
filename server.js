@@ -11,6 +11,8 @@ var blogRoutes = require('./routes/blog');
 var userRoutes = require('./routes/user');
 var commentRoutes = require('./routes/comment');
 
+var Blog = require('./models/blog')
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
@@ -47,8 +49,28 @@ app.get('/', function(req, res){
   res.render('index')
 });
 
+app.get('/blog/:blog_id', function(req, res){
+    Blog.findById(req.params.blog_id)
+    .populate('comments')
+    .exec(function(err, blog){
+      if(err){
+        console.log(err)
+      } else {
+        res.render('showBlog', {blog: blog})
+      }
+    })
+});
+
 app.get('/blog', function(req, res){
-  res.render('blog');
+    Blog.find()
+    .populate('comments')
+    .exec(function(err, blogs){
+      if(err){
+        console.log(err)
+      } else {
+        res.render('blog', {blogs: blogs})
+      }
+    })
 });
 
 app.get('/post', function(req, res){
