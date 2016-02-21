@@ -9,6 +9,7 @@
         <span class="icon-bar"></span>
       </button>
       <a class="navbar-brand" href="#">BLOG</a>
+
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -17,6 +18,7 @@
         <li class=""><a href="/">Home</a></li>
         <li><a href="/blog">blog</a></li>
         <li><a href="/post">post</a></li>
+
       </ul>
       <form class="navbar-form navbar-left" role="search">
         <div class="form-group">
@@ -26,12 +28,20 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Stuff <b class="caret"></b></a>
+
+          <% if(user.local) { %> 
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= user.local.username %> <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="/login">login</a></li>
             <li><a href="/logout">logout</a></li>
-            <li><a href="/signup">signup</a></li>
           </ul>
+          <% } %>
+          <% if(!user.local) { %> 
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">welcome stranger <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="/login">login</a></li>
+              <li><a href="/signup">signup</a></li>
+            </ul>
+          <% } %>
         </li>
       </ul>
     </div><!-- /.navbar-collapse -->

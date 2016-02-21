@@ -19,6 +19,8 @@ section {
 
 .social-icons {
   list-style-type: none;
+  margin-left: 14%;
+
 }
 
 .social-icons li {
@@ -29,4 +31,12 @@ section {
 
 .social-icons li:hover{
   color: purple;
+}
+
+.cstm-panel {
+  
+}
+
+.cstm-center {
+  margin: 0 auto;
 }

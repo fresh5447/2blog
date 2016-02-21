@@ -45,36 +45,46 @@ app.set('view engine', 'ejs');
 
 var port = process.env.PORT || 8080;
 
+app.use(function(req, res, next){
+  var user = req.user || "no user";
+  console.log(user);
+  next();
+})
+
 app.get('/', function(req, res){
-  res.render('index')
+  var user = req.user || "no user";
+  res.render('index', {user: user})
 });
 
 app.get('/blog/:blog_id', function(req, res){
+    var user = req.user || "no user";
     Blog.findById(req.params.blog_id)
     .populate('comments')
     .exec(function(err, blog){
       if(err){
         console.log(err)
       } else {
-        res.render('showBlog', {blog: blog})
+        res.render('showBlog', {blog: blog, user: user})
       }
     })
 });
 
 app.get('/blog', function(req, res){
+  var user = req.user || "no user";
     Blog.find()
     .populate('comments')
     .exec(function(err, blogs){
       if(err){
         console.log(err)
       } else {
-        res.render('blog', {blogs: blogs})
+        res.render('blog', {blogs: blogs, user: user})
       }
     })
 });
 
 app.get('/post', function(req, res){
-  res.render('post');
+  var user = req.user || "no user";
+  res.render('post', {user: user});
 });
 
 app.use('/api', blogRoutes);

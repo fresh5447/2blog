@@ -10,13 +10,10 @@
 
   </head>
 <body class="container">
-<%- include ./partials/navbar.ejs %>
 <div class="jumbotron">
   <div class="container">
       <!-- show any messages that come back with authentication -->
-    <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-    <% } %>
+
     <form action="/signup" method="POST" role="form">
       <legend>User Registration</legend>
     
