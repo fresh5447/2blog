@@ -204,8 +204,9 @@ var App = React.createClass({
   render: function(){
     return (
       <div>
-        <NavBar />
-        <Blog />
+        < NavBar />
+        < Home />
+        < Blog />
       </div>
       )
   }
