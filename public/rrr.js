@@ -1,3 +1,19 @@
+var styles = {};
+
+styles.tab = {
+  display: 'inline-block',
+  padding: 10,
+  margin: 10,
+  borderBottom: '4px solid',
+  borderBottomColor: '#ccc',
+  cursor: 'pointer'
+};
+
+styles.tabPanels = {
+  padding: 10
+};
+
+
 var Home = React.createClass({
   render: function() {
     return (
@@ -121,44 +137,46 @@ var Home = React.createClass({
   }
 });
 
-var NavBar = React.createClass({
-  render: function(){
+
+var Tabs = React.createClass({
+
+  handleTabClick: function(activeTabIndex){
+    this.props.onActiveTab(activeTabIndex)
+  },
+
+  renderTabs: function() {
+    var self = this;
+    return this.props.data.map(function(tab, index){
+      var style = self.props.activeTabIndex ? styles.activeTab : styles.tab;
+    var clickHandler = self.handleTabClick.bind(this, index);
+    return (
+        <div key={tab.name} style={style} onClick={clickHandler}>
+          {tab.name}
+        </div>
+      );
+    })
+  },
+
+  renderPanel: function() {
+    var tab = this.props.tab[this.props.activeTabIndex];
     return (
       <div>
-        <nav className="navbar navbar-default" role="navigation">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <button type="button" className="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span className="sr-only">Toggle navigation</span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-              </button>
-              <a className="navbar-brand" href="#">BLOG</a>
-
-            </div>
-
-            <div className="collapse navbar-collapse navbar-ex1-collapse">
-              <ul className="nav navbar-nav">
-                <li className=""><a href="/">Home</a></li>
-                <li><a href="/blog">blog</a></li>
-                <li><a href="/post">post</a></li>
-
-              </ul>
-              <ul className="nav navbar-nav navbar-right">
-                <li className="dropdown">
-                    <a href="#" className="dropdown-toggle" data-toggle="dropdown">welcome stranger <b className="caret"></b></a>
-                    <ul className="dropdown-menu">
-                      <li><a href="/login">login</a></li>
-                      <li><a href="/signup">signup</a></li>
-                    </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
+        <p>{tab.description}</p>
       </div>
-      )
+    );
+  },
+
+  render: function() {
+    return (
+      <div style={styles.app}>
+        <div style={styles.tabs}>
+          {this.renderTabs()}
+        </div>
+        <div style={styles.tabPanels}>
+          {this.renderPanel()}
+        </div>
+      </div>
+    );
   }
 });
 
@@ -201,17 +219,38 @@ var Blog = React.createClass({
 });
 
 var App = React.createClass({
+  getInitialState: function(){
+    return {
+      activeTabIndex: 0
+    }
+  },
+  handleActiveTabIndex: function(activeTabIndex){
+    this.setState({
+      activeTabIndex: activeTabIndex
+    })
+  },
   render: function(){
+
     return (
       <div>
-        < NavBar />
-        < Home />
-        < Blog />
+        <Tabs 
+        data={this.props.tabs}
+        activeTabIndex={this.state.activeTabIndex}
+        onActiveTab={this.handleActiveTabIndex}
+        />
+        <Home />
+        <Blog />
       </div>
       )
   }
 });
 
+DATA = [
+  { name: 'Step 1', description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.' },
+  { name: 'Step 2', description: 'Eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui id est.' },
+  { name: 'Step 3', description: 'Sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit.' },
+];
 
-React.render(<App/>,
+
+React.render(<App tabs={DATA}/>,
             document.getElementById('navBar'));
