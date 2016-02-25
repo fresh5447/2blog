@@ -12,14 +12,16 @@
 
   </head>
 <body class="container">
+
 <%- include ./partials/navbar.ejs %>
+
 <div class="jumbotron">
   <div class="container">
     <h3>blog</h3>
     <p>checkout this list of blogs..</p>
-    <% for(var i=0; i < blogs.length; i++) { %>
+    <% for(var i=0; i < posts.length; i++) { %>
        <ul>
-          <li><a href="/blog/<%= blogs[i]._id %>"><%= blogs[i].title %></a></li>
+          <li><a href="/post/<%= posts[i]._id %>"><%= posts[i].title %></a></li>
        </ul>
     <% } %>
   </div>

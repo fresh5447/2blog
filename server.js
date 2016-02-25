@@ -7,11 +7,11 @@ mongoose.connect('mongodb://localhost/2blog');
 var flash = require('connect-flash');
 var session = require('express-session');
 
-var blogRoutes = require('./routes/blog');
+var postRoutes = require('./routes/post');
 var userRoutes = require('./routes/user');
 var commentRoutes = require('./routes/comment');
 
-var Blog = require('./models/blog')
+var Post = require('./models/post')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -56,39 +56,39 @@ app.get('/', function(req, res){
   res.render('index', {user: user})
 });
 
-app.get('/blog/:blog_id', function(req, res){
+app.get('/post/:post_id', function(req, res){
     var user = req.user || "no user";
-    Blog.findById(req.params.blog_id)
+    Post.findById(req.params.post_id)
     .populate('comments')
-    .exec(function(err, blog){
+    .exec(function(err, post){
       if(err){
         console.log(err)
       } else {
-        res.render('showBlog', {blog: blog, user: user})
+        res.render('showBlog', {post: post, user: user})
       }
     })
 });
 
 app.get('/blog', function(req, res){
   var user = req.user || "no user";
-    Blog.find()
+    Post.find()
     .populate('comments')
-    .exec(function(err, blogs){
+    .exec(function(err, posts){
       if(err){
         console.log(err)
       } else {
-        res.render('blog', {blogs: blogs, user: user})
+        res.render('blog', {posts: posts, user: user})
       }
     })
 });
 
-app.get('/post', function(req, res){
+app.get('/new_post', function(req, res){
   var user = req.user || "no user";
   res.render('post', {user: user});
 });
 
-app.use('/api', blogRoutes);
-app.use('/api/blogs', commentRoutes);
+app.use('/api', postRoutes);
+app.use('/api/posts', commentRoutes);
 
 
 app.listen(port, function(){

@@ -12,7 +12,10 @@
 
   </head>
 <body class="container">
+
 <%- include ./partials/navbar.ejs %>
+
+
 <div class="jumbotron">
   <div class="container">
   
@@ -23,9 +26,9 @@
         </a>
       </div>
       <div class="media-body">
-        <h4 class="media-heading"><%= blog.title %></h4>
-        <h6>posted: <%= blog.date %> </h6>
-        <p><%= blog.content %></p>
+        <h4 class="media-heading"><%= post.title %></h4>
+        <h6>posted: <%= post.date %> </h6>
+        <p><%= post.content %></p>
       </div>
     </div>
     <div class="panel panel-default">
@@ -39,16 +42,16 @@
     </div>
       <div class="panel-footer">
       comments
-      <%if (blog.comments.length > 0) { %>
-        <% for(var i=0; i < blog.comments.length; i++) { %>
+      <%if (post.comments.length > 0) { %>
+        <% for(var i=0; i < post.comments.length; i++) { %>
            <ul>
-             <li><%= blog.comments[i].body %></li>
+             <li><%= post.comments[i].body %></li>
            </ul>
         <% } %>
       <% } %>
       </div>
     </div>
-    <h4><a href="/blog">back to blogs</a></h4>
+    <h4><a href="/post">back to blogs</a></h4>
   </div>
 </div>
 
