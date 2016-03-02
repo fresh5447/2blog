@@ -1,12 +1,24 @@
 var express = require('express');
 var router = express.Router();
+var mongoose = require('mongoose');
 
-var Post = require('../models/post')
+
+var Post = require('../models/post');
+
+var anonUser = { local:
+                  {  email: 'anon@anon.com',
+                      password: '$2a$08$k2uyfdPi1XzPGqWCAp62F.DOs/heDEFoy3axu7uygAoFKySxr5Q1S',
+                      username: 'anon dude',
+                      role: 'guest' },
+                      __v: 0,
+                      _id: '56d4cdc0e4e0bcd14e7e2713'
+                }
 
 router.route('/posts')
   .get(function(req, res){
+    
     Post.find()
-    .populate('comments')
+    .populate('author')
     .exec(function(err, posts){
       if(err){
         console.log(err)
@@ -18,10 +30,13 @@ router.route('/posts')
   .post(function(req, res){
 
     var post = new Post();
-    post.title = req.body.title;
-    post.content = req.body.content;
-    post.image = req.body.image;
-    post.author = req.body.author || 'douglas';
+    post.title = req.body.title || 'none';
+    post.content = req.body.content || 'none';
+    post.image = req.body.image || 'none';
+
+    post.author = req.user._id || "1342423413414";
+
+    console.log(post.author);
 
     post.save(function(err, post){
       if(err){

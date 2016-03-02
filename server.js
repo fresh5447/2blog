@@ -9,12 +9,22 @@ var session = require('express-session');
 
 var postRoutes = require('./routes/post');
 var userRoutes = require('./routes/user');
-var commentRoutes = require('./routes/comment');
 
-var Post = require('./models/post')
+var tweetRoutes = require('./routes/tweets');
+
+var commentRoutes = require('./routes/comment');
+var Post = require('./models/post');
+
+app.set('view engine', 'ejs');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(function(req, res, next){
+  console.log("Atleast I am trying to do something...")
+  next();
+})
+
+app.use(express.static('public'));
 
 //Passport stuff..
 
@@ -34,26 +44,18 @@ require('./config/passport')(passport);
 // routes ======================================================================
 require('./routes/user.js')(app, passport);
 
-app.use(function(req, res, next){
-  console.log("Atleast I am trying to do something...")
-  next();
-})
 
-app.use(express.static('public'));
-
-app.set('view engine', 'ejs');
 
 var port = process.env.PORT || 8080;
 
-app.use(function(req, res, next){
-  var user = req.user || "no user";
-  console.log(user);
-  next();
-})
 
 app.get('/', function(req, res){
   var user = req.user || "no user";
   res.render('index', {user: user})
+});
+
+app.get('/social', function(req, res){
+  res.render('social');
 });
 
 app.get('/post/:post_id', function(req, res){
@@ -89,6 +91,8 @@ app.get('/new_post', function(req, res){
 
 app.use('/api', postRoutes);
 app.use('/api/posts', commentRoutes);
+
+app.use('/api/tweets/', tweetRoutes);
 
 
 app.listen(port, function(){

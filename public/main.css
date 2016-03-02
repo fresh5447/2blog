@@ -10,7 +10,22 @@ section {
 }
 
 .cstm-img {
-  max-width: 60%;
+  max-width: 60% !important;
+}
+
+.my-img {
+  max-width: 30%;
+  float: left;
+  margin: 0 0 10px 10px;
+}
+
+.tweet-text {
+  max-width: 70%;
+}
+
+.tweet-text p {
+  font-size: 23px;
+  padding-left: 5px;
 }
 
 .cstm-form-input {
