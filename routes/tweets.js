@@ -15,7 +15,7 @@ var T = new Twit({
 
 anything.route('/:keyword')
   .get(function(req, res){
-    T.get('search/tweets', { q: req.params.keyword +' since:2011-07-11', count: 100 }, function(err, data, response) {
+    T.get('search/tweets', { q: req.params.keyword +' since:2011-07-11', count: 10 }, function(err, data, response) {
 
       var myTweetsArr = data.statuses.map(function(item){
         return { text: item.text, user_name: item.user.screen_name, created_at: item.created_at, profile_img: item.user.profile_image_url  }

@@ -1,49 +1,21 @@
 var TwitterCard = React.createClass({
-  getInitialState: function() {
-    return {
-      tweets: []
-    }
-  },
-  loadTweetsFromServer: function() {
-    var self = this;
-
-    $.ajax({
-      url: this.props.url,
-      method: 'GET',
-    }).done(function(data){
-      self.setState({tweets: data})
-    })
-  },
-  componentDidMount: function() {
-    this.loadTweetsFromServer();
-  },
-  render: function(){
-
-    console.log(this.state.tweets)
-
-    var twitterCards = this.state.tweets.map(function(item){
+  render: function() {
     return (
-        <div className="media col-sm-3">
-          <div className="media-left">
-            <a href="#">
-              <img className="img-circle" src={ item.profile_image } alt="..."/>
-            </a>
+      <div>
+        <div className="panel panel-default my-panel">
+          <div className="panel-header">
+            <img src={this.props.profile_img} 
+                 className="img-thumbnail"/> 
+            <p className="text-center">{ this.props.user_name }</p>
           </div>
-          <div className="media-body">
-            <h4 className="media-heading">{ item.user_name }</h4>
-            <p>{ item.text }</p>
-            <p>{ item.created_at }</p>
+          <div className="panel-body">
+            <h3 className="text-center"> { this.props.text } </h3>
+          </div>
+          <div className="panel-footer">
+            { this.props.created_at }
           </div>
         </div>
-      )
-    })
-    return (
-        <div>
-          { twitterCards }
-        </div>
+      </div>
       )
   }
 });
-
-React.render(<TwitterCard url="/api/tweets/tigers"/>, 
-  document.getElementById('twitter-card'));
